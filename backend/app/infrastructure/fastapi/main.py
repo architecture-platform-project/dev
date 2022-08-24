@@ -14,6 +14,7 @@ session = engine.sessionmaker()
 @app.get("/")
 async def root():
     message = session.query(TestTable).all()[0]
+    # message = session.query(TestTable).all()
     return message
 
 
