@@ -11,7 +11,7 @@ engine = engineconn()
 session = engine.sessionmaker()
 
 
-@app.get("/")
+@app.get("/api")
 async def root():
     message = session.query(TestTable).all()[0]
     # message = session.query(TestTable).all()
