@@ -1,5 +1,29 @@
 version: "3"
 services:
+  nginx:
+    depends_on:
+      - backend
+      - frontend
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "3000:80"
+    networks:
+      - local
+
+  frontend:
+    container_name: frontend
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/frontend
+    stdin_open: true
+    networks:
+      - local
+
   mysql:
     container_name: mysql
     build: ./mysql
@@ -17,7 +41,10 @@ services:
       - ./mysql/sqls/:/docker-entrypoint-initdb.d/
     networks:
       - local
+
   backend:
+    depends_on:
+      - mysql
     links:
       - mysql
     container_name: backend
@@ -28,7 +55,6 @@ services:
       - ./backend/app:/api/app
     networks:
       - local
-
 
 networks:
   local:
