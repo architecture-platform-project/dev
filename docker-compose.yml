@@ -49,7 +49,7 @@ services:
       - mysql
     container_name: backend
     build:
-      dockerfile: Dockerfile.dev2
+      dockerfile: Dockerfile.dev
       context: ./backend
     ports:
       - '8000:8000'
