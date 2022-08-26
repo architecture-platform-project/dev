@@ -48,7 +48,9 @@ services:
     links:
       - mysql
     container_name: backend
-    build: ./backend
+    build:
+      dockerfile: Dockerfile.dev2
+      context: ./backend
     ports:
       - "8000:8000"
     volumes:

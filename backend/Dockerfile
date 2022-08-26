@@ -6,13 +6,22 @@ ENV PYTHONDONTWRITEBYTECODE 1
 # 파이썬 로그가 버퍼링 없이 즉각적으로 출력하는 설정
 ENV PYTHONUNBUFFERED 1
 
+ENV POETRY_HOME="/opt/poetry" \
+    POETRY_VIRTUALENVS_IN_PROJECT=true \
+    POETRY_NO_INTERACTION=1 \
+    PYSETUP_PATH="/opt/pysetup" \
+    VENV_PATH="/opt/pysetup/.venv"
+
 RUN apt-get update \
     && apt-get install curl -y \
     && curl -sSL https://install.python-poetry.org | python - --version 1.1.13 \
     && apt-get install -y iputils-ping
 
 # poetry 설치를 위한 PATH 설정
-ENV PATH="/root/.local/bin:$PATH"
+# ENV PATH="/root/.local/bin:$PATH"
+# ENV PATH="${PATH}:/root/.poetry/bin"
+# ENV PATH="/root/.poetry/bin:$PATH"
+ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR /api
 
