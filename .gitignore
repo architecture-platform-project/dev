@@ -17,6 +17,8 @@ dist/
 # poetry
 .pdm.toml
 
+/mysql/mysql_data
+
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
 
@@ -31,5 +33,3 @@ logs
 
 node_modules
 
-### docker ###
-mysql/mysql_data
